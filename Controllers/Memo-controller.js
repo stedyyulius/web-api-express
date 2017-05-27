@@ -11,10 +11,9 @@ function Home (req,res,next){
   }
   else{
     let user = jwt.verify(Token, process.env.SECRET)
-    Memos.find({user_id: user.id},function(err,memos){
+    Memos.find({user_id: user._id},function(err,memos){
         let user = jwt.verify(Token, process.env.SECRET)
-        res.render('index', {memos: memos,user: user})
-  
+        res.render('index', {memos: memos,user: user})  
     })
   }  
 }
@@ -57,9 +56,9 @@ function createMemo (req,res,next){
        _id: req.params.id
      },{
        memo: req.body.memo,
-       created_at: new Date().UTCString()
+       created_at: new Date().toUTCString()
      },function (err,result){
-       res.redirect(`/editMemo/${req.params.id}`)
+       res.redirect(`/`)
      })
    }
  }

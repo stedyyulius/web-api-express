@@ -7,7 +7,7 @@
   <body>
     <h1><b>Welcome to Stress Memo</b></h1>
     <h2>make your own private memo here</h2>
-    <h3>Login</h3>
+    <h3><u>Login</u></h3>
     <form action="/login" method="post">
       <h4>Username</h4>
       <input type="text" name="username" placeholder="please input your username here">
@@ -15,11 +15,7 @@
       <input type="password" name="password" placeholder="please input your password here">
       <button type="submit">Login</button>
     </form>
-    <% if(message !== null){ %>
-      <div class="alert alert-danger" role ="alert">
-        <strong><%- message %></strong>
-      </div>
-  <%  } %>
+    <br>
     <a href="/signup">Sign Up</a>    
   </body>
 </html>

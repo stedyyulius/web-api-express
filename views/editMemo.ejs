@@ -6,7 +6,7 @@
   </head>
   <body>
     <h1> Edit Memo </h1>
-    <form action="/updateProfile" method="post">
+    <form action="/updateMemo/<%- memo._id %>" method="post">
       <h3>Memo</h3>
       <input type="text" name="memo" value="<%- memo.memo %>">
       <button type="submit">Submit</button>

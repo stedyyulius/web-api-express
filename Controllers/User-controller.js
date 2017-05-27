@@ -13,27 +13,27 @@ function signupScreen (req,res,next){
 }
 
 function signup (req,res,next){
-  let salt = bcrypt.genSaltSync(SaltRounds)
+  let salt = bcrypt.genSaltSync(saltRounds)
   let hash = bcrypt.hashSync(req.body.password,salt)
   Users.find({
     username: req.body.username
   },function(err,user){
-    if(user.length > 0){
-      res.redirect('/signup', {message: 'Username already exist!'})
-    }
-    else if (req.body.password.split('').length < 4){
-      res.redirect('/signup', {message: "Password must be 4 characters or more!"})
-    }
-    else{
+  //   if(user.length > 0){
+  //     res.redirect('/signup', {message: 'Username already exist!'})
+  //   }
+  //   if (req.body.password.split('').length < 4){
+  //     res.redirect('/signup', {message: "Password must be 4 characters or more!"})
+  //   }
+  //  else{
     Users.create({
       username: req.body.username,
       password: hash,
       email: req.body.email,
-      role: "Admin"
+      role: "User"
     },function(err,result){
-      res.redirect(`/login`)
+      res.redirect('/login')
     })
-    }
+  //  }
   })
 }
 
@@ -50,7 +50,7 @@ function login (req,res,next){
     }
     else{
       if(bcrypt.compare(req.body.password, result.password)){
-        var token = jwt.sign({_id: result.id, username: result.username, email: result.email})
+        var token = jwt.sign({_id: result.id, username: result.username, role: result.role},process.env.SECRET)
         localStorage.setItem('myKey',token)
         res.redirect('/')
       }
@@ -102,7 +102,7 @@ function logout (req,res,next){
   }
   else{
     localStorage.removeItem('myKey')
-    res.redirect('/login')
+    res.render('login')
   }
 }
 
@@ -110,13 +110,14 @@ function deleteUser (req,res,next){
   Users.remove({
     _id: req.params.id
   },function(err,result){
-    res.send('Delete Success!')
+    res.redirect('/listUser')
   })
 }
 
 function UserList (req,res,next){
   Users.find({},function(err,results){
-    res.render('Userlist', {users:results})
+    let userrole= jwt.verify(Token,process.env.SECRET)
+    res.render('listUser', {users:results, role: userrole})
   })
 }
 

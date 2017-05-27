@@ -6,13 +6,16 @@
   </head>
   <body>
     <% users.forEach(user=>{ %>
-      <table>
+      <table border="2px">
         <thead>
           <tr>
             <td>ID</td>
             <td>Username</td>
             <td>Email</td>
             <td>Role</td>
+            <% if (role.role === "Admin"){ %>
+            <td>Del</td>
+          <%  } %>
           </tr>        
         </thead>
         <tbody>
@@ -21,6 +24,10 @@
             <td><%- user.username %></td>
             <td><%- user.email %></td>
             <td><%- user.role %></td>
+            <br>
+            <% if (role.role === "Admin"){ %>
+            <td><a href="/deleteUser/<%- user._id %>">Delete</a></td>
+            <%  } %>        
           </tr>      
         </tbody>
       </table>
