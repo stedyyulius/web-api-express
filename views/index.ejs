@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Memo</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <a href="/editProfile/<%- user.id %>">Edit Profile</a>
+    <a href="/listUser">List User</a>
+    <h2>Add Memo</h2> 
+    <form action="" method="post">
+      <input type="text" name="memo" placeholder="your new memo..">
+      <button type="submit">Add</button>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <td>NO</td>
+          <td>Memo</td>
+          <td>Created_At</td>
+          <td>Actions</td>
+        </tr>      
+      </thead>
+      <tbody>
+        <tr>
+          <% let i = 1; memos.forEach(memo=>{ %>  
+          <td><%- i++ %></td>
+          <td><%- memo.memo %></td>
+          <td><%- memo.created_at %></td>
+          <td><a href="/editMemo/<%- memo._id %>">Edit</a> || <a href="/deleteMemo/<%- memo._id %>">Delete</a></td>
+        </tr>    
+      </tbody>
+        <%  }) %>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sign Up</title>
+  </head>
+  <body>
+    <h1>Sign Up</h1>
+    <form action="/signup" method="post">
+      <h3>Username</h3>
+      <input type="text" name="username" placeholder="username have to be unique">
+      <h3>Password</h3>
+      <input type="password" name="password" placeholder="password must be 4 characters or more">
+      <h3>Email</h3>
+      <input type="email" name="email" placeholder="email must contain @ sign and an email address">
+      <button type="submit">Submit</button>
+    </form>
+    <% if(message !== null){ %>
+      <div class="alert alert-danger" role ="alert">
+        <strong><%- message %></strong>
+      </div>
+  <%  } %>
+  </body>
+</html>
