@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,9 +6,7 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <a href="/logout">Logout</a><br>
-    <a href="/editProfile/<%- user._id %>">Edit Profile</a><br>
-    <a href="/listUser">List User</a>
+  <% include ./partials/menubar %>
     <h2>Add Memo</h2> 
     <form action="/createMemo" method="post">
       <input type="text" name="memo" placeholder="your new memo..">

@@ -46,7 +46,7 @@ function login (req,res,next){
     username: req.body.username
   },function(err,result){
     if(result === null){
-      res.render('login',{message: "Invalid Username or Password!"})
+      res.render('login')
     }
     else{
       if(bcrypt.compare(req.body.password, result.password)){
@@ -78,7 +78,7 @@ function updateProfile (req,res,next){
   }
   else{
     if(req.body.password.split('').length < 4){
-      res.redirect('/editProfile', {message: 'Password must be 4 characters or more!'})
+      res.redirect('/editProfile')
     }
     Users.findOne({
       _id: req.params.id

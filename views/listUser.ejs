@@ -5,6 +5,7 @@
     <title>User List</title>
   </head>
   <body>
+    <% include ./partials/menubar %>
     <% users.forEach(user=>{ %>
       <table border="2px">
         <thead>
@@ -14,7 +15,7 @@
             <td>Email</td>
             <td>Role</td>
             <% if (role.role === "Admin"){ %>
-            <td>Del</td>
+            <td>Actions</td>
           <%  } %>
           </tr>        
         </thead>
@@ -26,7 +27,8 @@
             <td><%- user.role %></td>
             <br>
             <% if (role.role === "Admin"){ %>
-            <td><a href="/deleteUser/<%- user._id %>">Delete</a></td>
+              
+            <td><a href="/editProfile/<%- user._id %>">Edit Profile</a> || <a href="/deleteUser/<%- user._id %>">Delete</a></td>
             <%  } %>        
           </tr>      
         </tbody>
